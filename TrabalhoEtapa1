@@ -1,0 +1,62 @@
+//trabalho feito por: Luiz Enrico, Leticia Maia, Marianna Caetano, Steffani Caldas, Roger Gabriel
+Import java.util.*; // biblioteca que chama a função Randon
+
+Public class jogoDados { // classe publica. Ela pode ser chamada em outras classes
+Private Random randomNum = new Random(); // serve para
+
+Private enum Status {Continue, WON, LOST}; // variável de tipos fixos do tipo inteiro
+
+Private final static int SNAKE_EYES = 2; // variável de tipos fixos do tipo inteiro que contem o valor 2
+
+Private final static int TREY = 3; // variável do tipo inteira fixa e que possui o valor 3
+
+Private final static int SEVEN = 7; // variável de tipos fixos do tipo inteiro que contem o valor 7
+
+Private final static int YO_LEVEN = 11; // variável de tipos fixos do tipo inteiro que contem o valor 11
+
+Private final static int BOX_CARS = 12; // variável de tipos fixos do tipo inteiro que contem o valor 12
+
+Public void play() // classe publica que não retrona o valor, apenas realiza as instruções e armazena os resultados
+{
+Int myPoint = 0; // declaração da variavel myPoint, no qual está sendo igualada a zero
+Status gameStatus; //
+Int sumDice = rollDice(); //
+
+Switch (sumDice) // corresponde a uma seleção multipla que tem como função realizar instruções especificas para cada caso
+{
+Case SEVEN://
+Case YO_LEVEN:
+gameStatus = Status.WON;
+case SNAKE_EYES:.          
+case BOX_CARS:
+gameStatus = Status.LOST;
+case TREY:
+default:.     // Default é parecido com Else, ele é uma condicional, se ele não atendeu o que foi pedido e vai para o próximo processo. 
+gameStatus = Status.Continue; // 
+myPoint= sumDice;
+System.out.printf(“Point is %d\n”, myPoint);
+Break; // break é a finalização daquele case 
+}
+While(gameStatus==Status.Continue){
+sumDice = rollDice();
+if(sumDice == myPoint)
+gameStatus = Status.WON;
+
+else // Else corresponde a negativa, condição. Se o que estiver sendo processado não corresponder ao laço while, ele sai e entra em outro comando. 
+if(sumDice == SEVEN)
+gameStatus = Status.LOST;
+}
+If (gameStatus == Status.WON)
+System.out.println(“Player wins!”);
+Else
+System.out.println(“Player loses!”); // saída de texto 
+}
+Public int rollDice()
+{
+Int die1 = 1 + randomNum.nextInt(6);
+Int die2 = 1 + randomNum.nextInt(6);
+Int sum = die1 + die2;
+System.out.printf(“Player rolled %d = %d\n”, die1, die2, sum); // Aqui será exibido o resultado da operação representada logo a cima. 
+Return sum;
+}
+}
